@@ -23,7 +23,7 @@
 http://nbsphinx.readthedocs.io/
 
 """
-__version__ = '0.4.2'
+__version__ = '0.4.2m'
 
 import copy
 import json
@@ -100,6 +100,12 @@ RST_TEMPLATE = """
 {% endif %}
 {%- endblock any_cell %}
 
+{% block input_group -%}
+{%- if cell.metadata.hide_input -%}
+{%- else -%}
+{{ super() }}
+{%- endif -%}
+{% endblock input_group %}
 
 {% block input -%}
 .. nbinput:: {% if cell.metadata.magics_language -%}
